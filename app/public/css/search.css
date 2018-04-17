@@ -1,0 +1,125 @@
+body {
+  padding-bottom: 80px;
+  height: 100vh;
+  position: relative;
+}
+
+.logo img {
+  max-width: 452px;
+  margin: 0 auto;
+}
+
+.btn-redirect-usa .icon-calculator {
+  display: inline;
+  vertical-align: middle;
+  font-size: 2em;
+  margin-right: 10px;
+}
+
+.btn-redirect-usa .text-btn-redirect-usa {
+  display: inline;
+  vertical-align: middle;
+  font-size: 1.5em;
+}
+
+@media screen and (min-width: 1024px) {
+  .btn-redirect-usa .text-btn-redirect-usa br {
+    display: none;
+  }
+}
+
+.form-inline .form-control.input-search {
+  width: calc(100% - 53px);
+  margin-right: 5px;
+}
+
+.btn-search {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+
+.btn-search span {
+  vertical-align: middle;
+}
+
+.tipBuyMobile {
+  display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .tipBuyMobile {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.list-group-item {
+  display: table;
+}
+
+.list-group-item span.tipBuy {
+  display: none;
+  position: absolute;
+}
+
+@media screen and (min-width: 1024px) {
+  .list-group-item:hover span.tipBuy {
+    display: inline-block;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background: #00a000;
+    color: #ffffff;
+    vertical-align: middle;
+    padding: 30px;
+    text-align: right;
+    box-shadow: -3px 0px 3px rgba(0,0,0,.4);
+  }
+}
+
+.list-group-item span {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 0 0 13px;
+}
+
+.list-group-item span.photo_product {
+  padding: 0;
+  width: 72px;
+  text-align: left;
+}
+
+.list-group-item span.price_product {
+  padding: 10px 0 0 0;
+  font-weight: bold;
+  color: #00a000;
+}
+
+@media screen and (min-height: 680px) and (min-width: 1024px) {
+  .footer {
+    position: absolute;
+  }
+}
+
+.footer {
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+}
+
+.footer .inner {
+  line-height: 80px;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer.small-screen {
+  position: relative;
+  margin-top: 100px;
+  display: inline-block;
+}

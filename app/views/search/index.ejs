@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+  <!-- Head -->
+  <%- include('../partials/head', {head: {
+    title: 'Confirmação | RedirecioneBr',
+    customCss: ['css/search.css', 'css/default-color.css']
+  }}) %>
+
+  <body class="bg-light" onload="init()">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm">
+          <main role="main" class="text-center">
+            <div class="media logo">
+              <img class="mb-5 mt-3" src="img/logo-redirecionebr-black.png" alt="" width="100%">
+            </div>
+            <h1 class="cover-heading">Encomendas e Dropshipping</h1>
+            <p class="lead">
+              Suas compras do <strong>Paraguai</strong>
+              para o <strong>Brasil</strong>!
+            </p>
+            <a href="https://import-app-teste.herokuapp.com/"
+              class="btn btn-outline-primary col-xs-12 col-sm-12 col-lg-8 btn-redirect-usa"
+              target="_blank">
+              <span class="icon-calculator"></span>
+              <span class="text-btn-redirect-usa">
+                Calcular redirecionamento <br />dos Estados Unidos!
+              </span>
+            </a>
+          </main>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-8 offset-lg-2  mt-5">
+          <form action="/busca" class="form-inline text-center">
+            <input
+            type="text"
+            class="form-control form-control-lg input-search"
+            name="q"
+            placeholder="<%= query %>">
+            <button type="submit" class="btn btn-primary btn-search">
+              <span class="icon-search"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <% if (resultado !== '' && resultado.length > 0) { %>
+          <div class="col-xs-12 col-sm-12 col-lg-8 offset-lg-2">
+            <p class="tipBuyMobile alert alert-primary text-center mt-2 mb-2">
+              Clique em um dos itens abaixo para fazer o pedido do mesmo!
+            </p>
+            <div class="list-group mt-2">
+              <% resultado.forEach(function(resul){ %>
+                <a
+                href="#"
+                class="list-group-item list-group-item-action"
+                data-toggle="modal"
+                data-target="#buyModal">
+                <span class="media photo_product">
+                  <img src="<%= resul.photo_product %>" alt="">
+                </span>
+                <span>
+                  <%= resul.name_product %><br />
+                  <span class="price_product"><%= resul.price_product %></span>
+                </span>
+                <span class="tipBuy">Clique para fazer o pedido desse produto!</span>
+              </a>
+              <% }); %>
+            </div>
+          </div>
+        <% } else if(q) {%>
+          <div class="col-xs-12 col-md-8 offset-md-2">
+            <div class="list-group mt-2">
+              <p class="list-group-item text-center">Ops! Desculpe, não encontramos resultados para <strong>"<%= q %>"</strong>.</p>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer text-center pb-5">
+      <div class="inner">
+        <p>
+          <i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/">/redirecionebr</a>
+          <i class="fab fa-instagram"></i> <a href="https://www.instagram.com/">@redirecionebr</a>
+        </p>
+      </div>
+    </footer>
+    <!-- /FOOTER -->
+
+    <!-- Modal Fechar Pedido -->
+    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="buyModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Fazer meu pedido!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/mail">
+            <div class="modal-body">
+              <div class="alert alert-primary text-justify" role="alert">
+                Logo ao concluir seu pedido, em até 6h você irá
+                receber um e-mail com o link de pagamento
+                (Via anúncio do Mercado Livre), após a confirmação do
+                pagamento despachamos seu produto no prazo máximo de até
+                10 dias corridos. <a href="/detalhes">Ver mais detalhes...</a>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Nome completo:</label>
+                <input type="text" class="form-control" name="recipientName" id="recipient-name">
+              </div>
+              <div class="form-group">
+                <label for="recipient-email" class="col-form-label">E-mail:</label>
+                <input type="text" class="form-control" name="recipientEmail" id="recipient-email">
+              </div>
+              <input type="hidden" name="recipientProduct" value="Produto de Teste">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Concluir pedido!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal Fechar Pedido -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+      function init() {
+        var items = document.querySelectorAll('.list-group-item');
+        items.forEach(function(index, el){
+          el.addEventListener("click", function(){
+            console.log('aoppp'); //item.querySelector('.price_product')
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

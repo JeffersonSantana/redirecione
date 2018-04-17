@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+  <!-- Head -->
+  <%- include('../partials/head', {head: {
+    title: 'Redirecionamento | Dropshipping | Sem Impostos | Estados Unidos | Paraguai | RedirecioneBr',
+    customCss: ['css/cover.css', 'css/default-color.css']
+  }}) %>
+
+  <body>
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner text-center">
+          <h3 class="masthead-brand">
+            <a href="/"><img src="img/logo-redirecionebr.png" /></a>
+          </h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a
+              class="nav-link"
+              href="#contact"
+              data-toggle="modal"
+              data-target="#contactModal"
+              data-whatever="@mdo">
+              Fale com a gente!
+            </a>
+          </nav>
+          <!-- <nav class="nav nav-account"> MVP V2
+            <a class="btn btn-outline-primary btn-login" href="/entrar">Entrar</a>
+            <a class="btn btn-primary btn-register" href="/cadastrar">Cadastre-se</a>
+          </nav> -->
+        </div>
+      </header>
+
+      <main role="main" class="inner cover text-center">
+        <h1 class="cover-heading">Redirecionamento e Dropshipping</h1>
+        <p class="lead">Suas compras dos <strong>Estados Unidos</strong> e <strong>Paraguai</strong>
+          para o <strong>Brasil sem impostos</strong> altos!<br />
+          Faça já o cálculo da sua importação por kg e valor da sua invoice!</p>
+        <p class="lead">
+          <!-- Button trigger modal -->
+          <a class="btn btn-link" href="" data-toggle="modal" data-target="#ComoFuncionaModal">Como funciona?</a>
+          <a class="btn btn-lg btn-primary" href="calcular.html">Começar aqui</a>
+        </p>
+      </main>
+
+      <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Recipient:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Como Funciona-->
+      <div class="modal fade" id="ComoFuncionaModal" tabindex="-1" role="dialog" aria-labelledby="ComoFuncionaModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Como funciona?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <ul>
+                <li>1 - Você efetua compras em lojas nos Estados Unidos e envia para o nosso endereço</li>
+                <li>2 - Recebemos sua encomenda e enviamos para o Brasil</li>
+                <li>3 - Você recebe suas compras sem impostos e taxas, somente o valor do nosso serviço</li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <a class="btn btn-primary" href="calcular.html">Já entendi, quero começar agora!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mastfoot mt-auto text-center">
+        <div class="inner">
+          <p>
+            <i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/">/redirecionebr</a>
+            <i class="fab fa-instagram"></i> <a href="https://www.instagram.com/">@redirecionebr</a>
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
+</html>
