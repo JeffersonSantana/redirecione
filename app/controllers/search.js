@@ -6,17 +6,25 @@ module.exports.search_product = function(application, req, res) {
     request = require('request')
     cheerio = require('cheerio')
     concat = require('array-concat')
+    commissionWholesale = 18
+    commissionRetail = 25
+    cutOffValue = 900
 
   /**
    * @method calcCommission
    */
   function calcCommission(price) {
-    price = price.replace('.','')
-    price = price.replace(',','.')
-    price = ((price * 125) / 100) + 45.97
+
+    let treatedPrice = price.replace(".","")
+        treatedPrice = treatedPrice.replace(",",".")
+        treatedPrice = parseFloat(treatedPrice)
+
+    let commission = (treatedPrice < cutOffValue) ? commissionRetail : commissionWholesale
+
+    price = ((treatedPrice * (100 + commission)) / 100).toFixed(2)
 
     //Instanciando o objeto
-    var formatter = new Intl.NumberFormat('pt-BR', {
+    formatter = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     });
