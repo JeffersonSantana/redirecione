@@ -105,13 +105,13 @@ module.exports.search_product = function(application, req, res) {
 
               res.render("search/index", {resultado: resultado.result, query: req.query.q});
             } else {
-              res.render("search/index", {resultado: '', query: 'Qual produto?', q: req.query.q});
+              res.render("search/index", {resultado: '', query: '', q: req.query.q});
             }
           })
         }
       })
     });
   } else {
-    res.render("search/index", {resultado: [], query: 'Qual produto?', q: null});
+    res.render("search/index", {resultado: [], query: '', q: null});
   }
 }

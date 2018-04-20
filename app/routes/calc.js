@@ -1,7 +1,12 @@
 module.exports = function(application) {
 
+  //Route EndPoint index calcular
+  application.get('/calcular', (req, res) => {
+    application.app.controllers.calc.calc_form(application, req, res)
+  })
+
   //Route EndPoint calcular
-  application.get('/calcular', function(req, res){
-    application.app.controllers.calc.calcular_importacao_controller(application, req, res);
-  });
-};
+  application.get('/calcular/:weightProduct/:invoiceProduct', (req, res) => {
+    application.app.controllers.calc.calc_price(application, req, res)
+  })
+}

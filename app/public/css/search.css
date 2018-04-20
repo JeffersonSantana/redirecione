@@ -10,16 +10,18 @@ body {
 }
 
 .btn-redirect-usa .icon-calculator {
-  display: inline;
+  display: inline-block;
   vertical-align: middle;
   font-size: 2em;
   margin-right: 10px;
 }
 
 .btn-redirect-usa .text-btn-redirect-usa {
-  display: inline;
+  display: inline-block;
   vertical-align: middle;
   font-size: 1.5em;
+  width: calc(100% - 40px);
+  white-space: normal;
 }
 
 @media screen and (min-width: 1024px) {

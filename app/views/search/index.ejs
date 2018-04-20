@@ -4,7 +4,7 @@
   <!-- Head -->
   <%- include('../partials/head', {head: {
     title: 'Confirmação | RedirecioneBr',
-    customCss: ['css/search.css', 'css/default-color.css']
+    customCss: ['/css/search.css', '/css/default-color.css']
   }}) %>
 
   <body class="bg-light" onload="init()">
@@ -19,8 +19,8 @@
             </div>
             <h1 class="cover-heading">Encomendas e Dropshipping</h1>
             <p class="lead">
-              Suas compras dos <strong>Estados Unidos</strong> e <strong>Paraguai</strong><br />
-              para o <strong>Brasil</strong> sem impostos altos! Atacado e Varejo!
+              Suas compras dos <strong>Estados Unidos</strong> e <strong>Paraguai</strong>
+              para o <strong>Brasil</strong> sem impostos! Atacado e Varejo!
             </p>
             <a href="https://import-app-teste.herokuapp.com/"
               class="btn btn-outline-primary col-xs-12 col-sm-12 col-lg-8 btn-redirect-usa"
@@ -41,7 +41,8 @@
             type="text"
             class="form-control form-control-lg input-search"
             name="q"
-            placeholder="<%= query %>">
+            placeholder="Qual produto?"
+            value="<%= query %>">
             <button type="submit" class="btn btn-primary btn-search">
               <span class="icon-search"></span>
             </button>
