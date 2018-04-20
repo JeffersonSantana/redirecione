@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+  <!-- Head -->
+  <%- include('../partials/head', {head: {
+    title: 'Otavio Redirecionador | EUA | Paraguai | China',
+    customCss: ['/css/calc.css', '/css/default-color.css']
+  }}) %>
+
+  <body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8K3ZLM"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+
+	 <h1><img src="/img/logo-redirecionebr-black.png" /></h1>
+
+	 <p class="subtitulo"><strong>EUA | Paraguai | China</strong></p>
+
+	 <form action="/calcular" method="post">
+	   <p><label>Peso (kg): </label>
+	   <input type="text" name="peso"/> <span>* Use ponto para decimais</span></p>
+	   <p><label>Valor da Invoice (Dólar): </label>
+	   <input type="text" name="valorInvoice"/> <span>* Use ponto para decimais</span></p>
+	   <input type="submit" value="Enviar"/>
+	 </form>
+
+		<% if(result) { %>
+			<p class="resultado">
+        <strong>Os custos da sua <br />importação será de:</strong>
+			  <br />Cotação: R$ <%= result.dolar.today.rates.BRL %>
+      </p>
+			<p class="resultadoDolar">
+  			<span>Frete USA - PY: R$ <%= result.frete.real %></span>
+  			<br /><span>Serviço (Freteiro): R$ <%= result.comissao %></span>
+  			<br /><span>Valor do Produto: R$ <%= result.produto %></span>
+  			<br /><span>Valor Total: R$ <%= result.total %></span>
+			</p>
+		<% } %>
+  </body>
+</html>
