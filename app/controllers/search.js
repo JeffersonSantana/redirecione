@@ -32,54 +32,67 @@ module.exports.search_product = function(application, req, res) {
     return formatter.format(price)
   }
 
+  function getPayLoadListPdp($) {
+    var tabela = $('.tbl-produtos tr');
+
+    if(tabela.length > 0) {
+
+      // Objeto que irá armazenar a tabela
+      var resultado = {};
+      resultado.query = req.query.q;
+      resultado.date = new Date();
+      resultado.result = [];
+
+      for(var i = 0; i < 4; i++) {
+        let el = cheerio.load(tabela[i]);
+
+        // Inserindo os dados obtidos no nosso objeto
+        resultado.result.push({
+          name_product: el('.tbl-produtos-produto a').text().split('Adicionar à lista de desejos')[0],
+          price_product: calcCommission(el('.tbl-produtos-preco .preco-reais').text().trim().split('R$ ')[1]),
+          photo_product: (el('.tbl-produtos-foto img').attr('src')) ? domainScrapper + el('.tbl-produtos-foto img').attr('src') : '/img/sem-imagem.gif'
+        });
+      }
+    }
+
+    return resultado
+  }
+
   if(req.query.q) {
 
-    /**
-     * Leitura no arquivo de cache local
-     */
-    fs.readFile('./file_store/cache_price.json', 'utf8', function readFileCallback(err, data){
+    // Endereço de raspagem
+    var domainScrapper = 'http://www.comprasparaguai.com.br'
 
-      // ERRO
-      if (err){
-        console.log(err);
-        return;
-      }
+    // Requisição da página para raspagem
+    url = domainScrapper + '/busca/?q=' + req.query.q.replace(' ', '+');
+    request(url, function(error, response, html) {
 
-      // Objeto do arquivo de cache
-      let obj = JSON.parse(data);
+      // Assegurar que não tenha erros para fazer a raspagem de dados com sucesso
+      if (!error) {
+        var $ = cheerio.load(html);
 
-      // Iteração por todos os caches gravados
-      obj.cache.forEach(function(cache_item) {
+        var hrefProduct = $('.tbl-produtos tr').first().find('.ver-ofertas a').attr('href');
 
-        // Se a busca tiver em cache, irá ser utilizada
-        if(cache_item.query === req.query.q) {
-          res.render("search/index", {resultado: cache_item.result, query: req.query.q});
-        }
-      });
+        // Pegar endereço do primeiro item, que possui todos os resultados da busca
+        urlRes = domainScrapper + hrefProduct;
 
-      // Endereço de raspagem
-      var domainScrapper = 'http://www.comprasparaguai.com.br'
+        // Raspagem da página que contém os resultados
+        request(urlRes, function(errorRes, responseRes, htmlRes) {
 
-      // Requisição da página para raspagem
-      url = domainScrapper + '/busca/?q=' + req.query.q.replace(' ', '+');
-      request(url, function(error, response, html) {
+          /**
+           * Existe junção de produtos
+           */
+          if (!errorRes) {
+            application.winston.log('info', 'Junção de produtos: ' + req.query.q);
+            res.render("search/index", {resultado: getPayLoadListPdp(cheerio.load(htmlRes)).result, query: req.query.q});
+          } else {
 
-        // Assegurar que não tenha erros para fazer a raspagem de dados com sucesso
-        if (!error) {
-          var $ = cheerio.load(html);
+            /**
+             * Não existe junção de produtos
+             */
+             var tabela = $('.tbl-produtos tr');
 
-          var hrefProduct = $('.tbl-produtos tr').first().find('.ver-ofertas a').attr('href');
-
-          // Pegar endereço do primeiro item, que possui todos os resultados da busca
-          urlRes = domainScrapper + hrefProduct;
-
-          // Raspagem da página que contém os resultados
-          request(urlRes, function(errorRes, responseRes, htmlRes) {
-
-            if (!errorRes) {
-              $ = cheerio.load(htmlRes);
-
-              var tabela = $('.tbl-produtos tr');
+             if(tabela.length > 0) {
 
               // Objeto que irá armazenar a tabela
               var resultado = {};
@@ -94,24 +107,22 @@ module.exports.search_product = function(application, req, res) {
                 resultado.result.push({
                   name_product: el('.tbl-produtos-produto a').text().split('Adicionar à lista de desejos')[0],
                   price_product: calcCommission(el('.tbl-produtos-preco .preco-reais').text().trim().split('R$ ')[1]),
-                  photo_product: domainScrapper + el('.tbl-produtos-foto img').attr('src')
+                  photo_product: (el('.tbl-produtos-foto img').attr('src')) ? domainScrapper + el('.tbl-produtos-foto img').attr('src') : '/img/sem-imagem.gif'
                 });
               }
 
-              // Gravar novo cache
-              // obj.cache.push(resultado.result);
-              // let json = JSON.stringify(obj);
-              // fs.writeFile('./file_store/cache_price.json', json, 'utf8');
-
-              res.render("search/index", {resultado: resultado.result, query: req.query.q});
+              application.winston.log('info', 'Não existe junção de produtos: ' + req.query.q);
+              res.render("search/index", {resultado: resultado.result, query: '', q: req.query.q});
             } else {
+              application.winston.log('info', 'Não existe produto: ' + req.query.q);
               res.render("search/index", {resultado: '', query: '', q: req.query.q});
             }
-          })
-        }
-      })
-    });
+          }
+        })
+      }
+    })
   } else {
+    application.winston.log('info', 'URL não localizada: ' + req.query.q);
     res.render("search/index", {resultado: [], query: '', q: null});
   }
 }
