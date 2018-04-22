@@ -3,6 +3,7 @@ const load = require('express-load')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
 const winston = require('winston')
+const dotenv = require('dotenv').config()
 
 const app = express()
 
