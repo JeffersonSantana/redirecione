@@ -5,4 +5,10 @@ module.exports = function(application) {
     // application.app.controllers.home.index(application, req, res); TODO: MVP
     res.redirect('/busca');
   });
+
+  //Route home V2
+  application.get('/v2', function(req, res){
+    // application.app.controllers.home.index(application, req, res); TODO: MVP
+    res.redirect('/busca/v2');
+  });
 };

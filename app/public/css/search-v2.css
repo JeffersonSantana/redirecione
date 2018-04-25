@@ -1,0 +1,102 @@
+.form-inline .form-control.input-search {
+  width: calc(100% - 53px);
+  margin-right: 5px;
+}
+
+.btn-search {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+
+.btn-search span {
+  vertical-align: middle;
+}
+
+.card {
+  padding: 20px;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.btn-redirect-usa .icon-calculator {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 2em;
+  margin-right: 10px;
+}
+
+.btn-redirect-usa .text-btn-redirect-usa {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1em;
+  width: calc(100% - 40px);
+  white-space: normal;
+}
+
+@media screen and (min-width: 1024px) {
+  .btn-redirect-usa .text-btn-redirect-usa {
+    font-size: 1.5em;
+
+    br {
+      display: none;
+    }
+  }
+}
+
+.tipBuyMobile {
+  display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .tipBuyMobile {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.list-group-item {
+  display: table;
+}
+
+.list-group-item span.tipBuy {
+  display: none;
+  position: absolute;
+}
+
+@media screen and (min-width: 1024px) {
+  .list-group-item:hover span.tipBuy {
+    display: inline-block;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background: #00a000;
+    color: #ffffff;
+    vertical-align: middle;
+    padding: 30px;
+    text-align: right;
+    box-shadow: -3px 0px 3px rgba(0,0,0,.4);
+  }
+}
+
+.list-group-item span {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 0 0 13px;
+  text-align: left;
+}
+
+.list-group-item span.photo_product {
+  padding: 0;
+  width: 72px;
+  text-align: left;
+}
+
+.list-group-item span.price_product {
+  padding: 10px 0 0 0;
+  font-weight: bold;
+  color: #00a000;
+}

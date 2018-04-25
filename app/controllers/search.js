@@ -2,12 +2,13 @@
 
 
 //Controller price
-module.exports.search_product = function(application, req, res) {
+module.exports.search_product = function(application, req, res, v2) {
 
   var
     fs = require('fs')
     request = require('request')
     cheerio = require('cheerio')
+    tmplSearch = v2 ? 'search/index-v2' : 'search/index'
 
   /**
    * @method calcCommission
@@ -87,7 +88,7 @@ module.exports.search_product = function(application, req, res) {
            */
           if (!errorRes) {
             application.winston.log('info', 'Junção de produtos: ' + req.query.q)
-            res.render("search/index", {resultado: getPayLoadListPdp(cheerio.load(htmlRes)).result, query: req.query.q})
+            res.render(tmplSearch, {resultado: getPayLoadListPdp(cheerio.load(htmlRes)).result, query: req.query.q})
           } else {
 
             /**
@@ -115,10 +116,10 @@ module.exports.search_product = function(application, req, res) {
               }
 
               application.winston.log('info', 'Não existe junção de produtos: ' + req.query.q)
-              res.render("search/index", {resultado: resultado.result, query: '', q: req.query.q})
+              res.render(tmplSearch, {resultado: resultado.result, query: '', q: req.query.q})
             } else {
               application.winston.log('info', 'Não existe produto: ' + req.query.q)
-              res.render("search/index", {resultado: '', query: '', q: req.query.q})
+              res.render(tmplSearch, {resultado: '', query: '', q: req.query.q})
             }
           }
         })
@@ -126,6 +127,6 @@ module.exports.search_product = function(application, req, res) {
     })
   } else {
     application.winston.log('info', 'URL não localizada: ' + req.query.q)
-    res.render("search/index", {resultado: [], query: '', q: null})
+    res.render(tmplSearch, {resultado: [], query: '', q: null})
   }
 }
