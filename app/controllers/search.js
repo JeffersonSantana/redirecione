@@ -22,7 +22,7 @@ module.exports.search_product = function(application, req, res, v2) {
     let commission = (treatedPrice < parseInt(process.env.CUTOFF_VALUE)) ?
       parseInt(process.env.COMMISSION_RETAIL) : parseInt(process.env.COMMISSION_WHOLESALE)
 
-    price = ((treatedPrice * (100 + commission)) / 100).toFixed(2)
+    price = ((((treatedPrice * process.env.CORRECTION_FACTOR) / 100) * (100 + commission)) / 100).toFixed(2)
 
     //Instanciando o objeto
     formatter = new Intl.NumberFormat('pt-BR', {
@@ -47,7 +47,7 @@ module.exports.search_product = function(application, req, res, v2) {
       resultado.date = new Date()
       resultado.result = []
 
-      for(var i = 0; i < 4; i++) {
+      for(var i = 0; i < tabela.length; i++) {
         let el = cheerio.load(tabela[i])
 
         // Inserindo os dados obtidos no nosso objeto
@@ -104,7 +104,7 @@ module.exports.search_product = function(application, req, res, v2) {
               resultado.date = new Date()
               resultado.result = []
 
-              for(var i = 0; i < 4; i++) {
+              for(var i = 0; i < tabela.length; i++) {
                 let el = cheerio.load(tabela[i])
 
                 // Inserindo os dados obtidos no nosso objeto

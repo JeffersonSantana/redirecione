@@ -56,56 +56,77 @@
 
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Suas compras dos <strong>Estados Unidos</strong> e <strong>Paraguai</strong></h1>
-          <p class="lead text-muted">
-            para o <strong>Brasil</strong> sem taxas alfandegárias! Atacado e Varejo!
-          </p>
-          <div class="">
-            <form action="/busca" class="form-inline text-center">
-              <input
-              type="text"
-              class="form-control form-control-lg input-search"
-              name="q"
-              placeholder="Qual produto?"
-              value="<%= query %>">
-              <button type="submit" class="btn btn-primary btn-search">
-                <span class="icon-search"></span>
-              </button>
-            </form>
-            <div class="row">
-              <% if (resultado !== '' && resultado.length > 0) { %>
-                <div class="col-xs-12 col-sm-12 col-lg-8 offset-lg-2">
-                  <p class="tipBuyMobile alert alert-primary text-center mt-2 mb-2">
-                    Clique em um dos itens abaixo para fazer o pedido do mesmo!
-                  </p>
-                  <div class="list-group mt-2">
-                    <% resultado.forEach(function(resul){ %>
-                      <a
-                      href="#"
-                      class="list-group-item list-group-item-action"
-                      data-toggle="modal"
-                      data-target="#buyModal">
-                      <span class="media photo_product">
-                        <img src="<%= resul.photo_product %>" alt="">
-                      </span>
-                      <span>
-                        <%= resul.name_product %><br />
-                        <span class="price_product"><%= resul.price_product %></span>
-                      </span>
-                      <span class="tipBuy">Clique para fazer o pedido desse produto!</span>
-                    </a>
-                    <% }); %>
-                  </div>
-                </div>
-              <% } else if(q) {%>
-                <div class="col-xs-12 col-md-8 offset-md-2">
-                  <div class="list-group mt-2">
-                    <p class="list-group-item text-center">Ops! Desculpe, não encontramos resultados para <strong>"<%= q %>"</strong>.</p>
-                  </div>
-                </div>
-              <% } %>
+
+          <div class="row">
+            <div class="col-12">
+              <h1 class="jumbotron-heading">Suas compras dos <strong>Estados Unidos</strong> e <strong>Paraguai</strong></h1>
+              <p class="lead text-muted">
+                para o <strong>Brasil</strong> sem taxas alfandegárias! Atacado e Varejo!
+              </p>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-12">
+              <form action="/busca" class="form-inline text-center">
+                <input
+                type="text"
+                class="form-control form-control-lg input-search"
+                name="q"
+                placeholder="Qual produto?"
+                value="<%= query %>">
+                <button type="submit" class="btn btn-primary btn-search">
+                  <span class="icon-search"></span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <% if (resultado !== '' && resultado.length > 0) { %>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-lg-8 offset-lg-2">
+                <p class="tipBuyMobile alert alert-primary text-center mt-2 mb-2">
+                  Clique em um dos itens abaixo para fazer o pedido do mesmo!
+                </p>
+              </div>
+            </div>
+          <% } else if(q) {%>
+            <div class="row">
+              <div class="col-xs-12 col-md-8 offset-md-2">
+                <div class="list-group mt-2">
+                  <p class="list-group-item text-center">Ops! Desculpe, não encontramos resultados para <strong>"<%= q %>"</strong>.</p>
+                </div>
+              </div>
+            </div>
+          <% } %>
+
+          <% if (resultado !== '' && resultado.length > 0) { %>
+            <div class="row">
+              <div class="col-12 mt-4">
+                <div class="row">
+                  <% resultado.forEach(function(resul){ %>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                      <div class="card box-shadow">
+                        <div class="media photo_product">
+                          <img src="<%= resul.photo_product %>" alt="">
+                        </div>
+                        <div class="card-body">
+                          <p class="card-text"><strong><%= resul.name_product %></strong></p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-sm btn-primary">Comprar</button>
+                            </div>
+                            <small class="text-muted"><%= resul.price_product %></small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% }); %>
+                </div>
+              </div>
+            </div>
+          <% } %>
+
           <div class="mt-3">
             <a href="https://import-app-teste.herokuapp.com/"
               class="btn btn-outline-primary col-xs-12 col-sm-12 col-lg-8 btn-redirect-usa"

@@ -14,11 +14,17 @@
 }
 
 .card {
+  width: 100%;
   padding: 20px;
+  display: inline-block;
 }
 
 .card-body {
   padding: 0;
+}
+
+.card-text {
+  height: 120px;
 }
 
 .btn-redirect-usa .icon-calculator {
@@ -89,10 +95,9 @@
   text-align: left;
 }
 
-.list-group-item span.photo_product {
-  padding: 0;
-  width: 72px;
-  text-align: left;
+.photo_product {
+  width: 100%;
+  height: 90px;
 }
 
 .list-group-item span.price_product {
