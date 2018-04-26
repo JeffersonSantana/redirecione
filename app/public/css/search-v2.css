@@ -57,6 +57,10 @@
 }
 
 @media screen and (max-width: 1023px) {
+  .media.logo {
+    width: calc(100% - 65px);
+  }
+
   .tipBuyMobile {
     display: inline-block;
     width: 100%;

@@ -17,9 +17,10 @@ app.use(expressValidator())
 
 load()
   .then('app/routes', {verbose:true})
-  .then('config/pagSeguro.js', {verbose:true})
   .then('app/models', {verbose:true})
   .then('app/controllers', {verbose:true})
+  .then('config/db.js', {verbose:true})
+  // .then('config/pagSeguro.js', {verbose:true})
   .into(app)
 
 module.exports = app
